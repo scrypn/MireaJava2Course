@@ -3,19 +3,18 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Prac001 {
+    public static final Scanner sc = new Scanner(System.in);
     static void t3() {
-        Scanner sc = new Scanner(System.in);
         int[] arr = new int[10];
         float sum = 0;
         for (int i = 0; i < arr.length; ++i) {
             arr[i] = sc.nextInt();
             sum += arr[i];
         }
-        System.out.printf("Sum is %f\nAvg is %f", sum, sum / 10);
+        System.out.printf("Sum is %.2f\nAvg is %.2f", sum, sum / 10);
     }
 
     static void t4() {
-        Scanner sc = new Scanner(System.in);
         ArrayList<Integer> arr = new ArrayList<>(16);
 
         int item;
@@ -53,8 +52,28 @@ public class Prac001 {
             System.out.println(arg);
         }
     }
+    static void t6(){
+        for (int i = 1; i <= 10; i++) {
+            System.out.printf("%.2f\n", 1.0 / i);
+        }
+    }
+    static int t7(){
+        int value = sc.nextInt();
+        if (value > 0) {
+            int fact = 1;
+            for (int i = 1; i <= value; i++) {
+                fact *= i;
+            }
+            return fact;
+        }
+        return 0;
+    }
 
     public static void main(String[] args) {
         t3();
+        t4();
+        t5(args);
+        t6();
+        System.out.printf("Factorial: %d", t7());
     }
 }
