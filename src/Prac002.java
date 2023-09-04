@@ -1,17 +1,11 @@
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Prac002 {
     private static final Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        PitomnikDog.addDogs();
-    }
-
     /**
-     * 1
+     * Task 1
      */
     static class Author {
         private final String name;
@@ -47,7 +41,7 @@ public class Prac002 {
     }
 
     static class TestAuthor {
-        public static void test() {
+        public static void main(String[] args) {
             System.out.println("Enter name, email, gender(M, F):");
             Author author = new Author(sc.nextLine(), sc.nextLine(), sc.next().charAt(0));
             System.out.println("Select action: 1)get name, 2)get email, 3)set email, 4)get gender, 5)print data in one string");
@@ -77,7 +71,7 @@ public class Prac002 {
     }
 
     /**
-     * 2
+     * Task 2
      */
     static class Ball {
         private double x, y = 0;
@@ -123,7 +117,7 @@ public class Prac002 {
     }
 
     static class TestBall {
-        public static void test() {
+        public static void main(String[] args) {
             System.out.println("Enter start coords:");
             Ball ball;
             try {
@@ -169,7 +163,7 @@ public class Prac002 {
     }
 
     /**
-     * 3
+     * Task 3
      */
     static class Point {
         private float x, y = 0;
@@ -198,7 +192,7 @@ public class Prac002 {
         private static ArrayList<Circle> circles = new ArrayList<>(16);
         private static int size = 0;
 
-        public static void test() {
+        public static void main(String[] args) {
             for (int i = 0; i < 10; i++) {
                 circles.add(new Circle(34, 45));
                 size++;
@@ -207,7 +201,7 @@ public class Prac002 {
     }
 
     /**
-     * 4
+     * Task 4
      */
     static class Shop implements ComputerAdd {
         private ArrayList<Computer> comps = new ArrayList<>(16);
@@ -296,7 +290,7 @@ public class Prac002 {
     }
 
     static class TestShop {
-        public static void test() {
+        public static void main(String[] args) {
             Shop shop = new Shop();
             //shop.initComp();
             for (int i = 0; i < 10; i++) {
@@ -310,6 +304,9 @@ public class Prac002 {
         }
     }
 
+    /**
+     * Task 5
+     */
     static class Dog {
         private String name;
         private int age;
@@ -338,23 +335,204 @@ public class Prac002 {
         public int dogAgeToHuman() {
             return age * 7;
         }
+
         @Override
-        public String toString(){
+        public String toString() {
             return String.format("Dog{name: %s, age: %d}", name, age);
         }
 
 
     }
-    static class PitomnikDog{
+
+    static class PitomnikDog {
         private static ArrayList<Dog> dogs = new ArrayList<>(16);
-        public static void addDogs(){
+
+        public static void main(String[] args) {
+            addDogs();
+        }
+
+        public static void addDogs() {
             for (int i = 0; i < 16; i++) {
                 //System.out.println("Enter dog's param:");
-                dogs.add(new Dog("dogg", (int)((Math.random()*100)+1) ));
+                dogs.add(new Dog("dogg", (int) ((Math.random() * 100) + 1)));
                 //System.out.println("Dogs added successfully");
             }
-            for (Dog d: dogs) {
+            for (Dog d : dogs) {
                 System.out.println(d.dogAgeToHuman());
+            }
+        }
+    }
+
+    /**
+     * Task 6
+     */
+    static class ModelCircle {
+        private int xCenter, yCenter = 0;
+        private float radius;
+
+        ModelCircle(float radius) {
+            this.radius = radius;
+        }
+
+        ModelCircle(int xCenter, int yCenter, float radius) {
+            this.xCenter = xCenter;
+            this.yCenter = yCenter;
+            this.radius = radius;
+        }
+
+        public int getXCenter() {
+            return this.xCenter;
+        }
+
+        public void setXCenter(int xCenter) {
+            this.xCenter = xCenter;
+        }
+
+        public int getYCenter() {
+            return this.yCenter;
+        }
+
+        public void setYCenter(int yCenter) {
+            this.yCenter = yCenter;
+        }
+
+        public float getRadius() {
+            return this.radius;
+        }
+
+        public void setRadius(float radius) {
+            this.radius = radius;
+        }
+
+        public float calcCircleArea() {
+            return (float) (Math.PI * Math.pow(this.radius, 2));
+        }
+
+        public float calcCircleLength() {
+            return (float) (2 * Math.PI * this.radius);
+        }
+
+    }
+
+    static class TestCircle {
+        public static void main(String[] args) {
+            ModelCircle mc = new ModelCircle(12, 23, 56);
+            mc.setXCenter(mc.getXCenter() + 5);
+            mc.setYCenter(mc.getYCenter() + 6);
+            mc.setRadius(mc.getRadius() - 4);
+            System.out.printf("X: %d, Y: %d\nArea: %f, Length: %f", mc.getXCenter(), mc.getYCenter(), mc.calcCircleArea(), mc.calcCircleLength());
+        }
+    }
+
+    /**
+     * Task 7
+     */
+    static class Book {
+        private String author, title, publishYear;
+
+        Book(String author, String title, String publishYear) {
+            this.author = author;
+            this.title = title;
+            this.publishYear = publishYear;
+        }
+
+        public String getAuthor() {
+            return this.author;
+        }
+
+        public void setAuthor(String author) {
+            this.author = author;
+        }
+
+        public String getTitle() {
+            return this.title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getPublishYear() {
+            return this.publishYear;
+        }
+
+        public void setPublishYear(String publishYear) {
+            this.publishYear = publishYear;
+        }
+
+        @Override
+        public String toString(){
+            return String.format("Book{author: %s,title: %s,publishYear: %s}", author, title, publishYear);
+        }
+    }
+
+    static class Bookshelf {
+        ArrayList<Book> books = new ArrayList<>(16);
+
+        public void addBook(String author, String title, String publishYear) {
+            books.add(new Book(author, title, publishYear));
+        }
+
+        public void sort() {
+            books.sort((b1, b2) -> b1.getPublishYear().compareTo(b2.getPublishYear()));
+        }
+        public void printBooks(){
+            for (Book b:books) {
+                System.out.println(b);
+            }
+        }
+        public void earlyBooks(){
+            this.sort();
+            for (Book b:books) {
+                if (Objects.equals(books.get(0).publishYear, b.publishYear)) System.out.println(b);
+            }
+        }
+        public void lastBooks(){
+            this.sort();
+            for (Book b:books) {
+                if (Objects.equals(books.get(books.size()-1).publishYear, b.publishYear)) System.out.println(b);
+            }
+        }
+    }
+
+    static class TestBook {
+        public static void main(String[] args) {
+            Bookshelf bs = new Bookshelf();
+            for (int i = 0; i < 15; i++) {
+                bs.addBook("Kolya", "Title"+(i+1), String.valueOf((int)((Math.random()*40)+1980)));
+            }
+            bs.printBooks();
+            bs.sort();
+            System.out.println("---------------------------------------");
+            bs.earlyBooks();
+            System.out.println("---------------------------------------");
+            bs.lastBooks();
+            System.out.println("---------------------------------------");
+            bs.printBooks();
+
+        }
+    }
+    /**
+     * Task 8
+     */
+    static class arrayMoveItems{
+        public static void main(String[] args) {
+            String buff;
+            String[] arr = new String[11];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = "item"+(i+1);
+            }
+            for (String s:arr) {
+                System.out.println(s);
+            }
+            System.out.println("------------------------------");
+            for (int i = 0; i < (int)(arr.length/2); i++) {
+                buff = arr[i];
+                arr[i] = arr[arr.length-1-i];
+                arr[arr.length-1-i] = buff;
+            }
+            for (String s:arr) {
+                System.out.println(s);
             }
         }
     }
