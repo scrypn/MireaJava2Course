@@ -461,7 +461,7 @@ public class Prac002 {
         }
 
         @Override
-        public String toString(){
+        public String toString() {
             return String.format("Book{author: %s,title: %s,publishYear: %s}", author, title, publishYear);
         }
     }
@@ -476,21 +476,24 @@ public class Prac002 {
         public void sort() {
             books.sort((b1, b2) -> b1.getPublishYear().compareTo(b2.getPublishYear()));
         }
-        public void printBooks(){
-            for (Book b:books) {
+
+        public void printBooks() {
+            for (Book b : books) {
                 System.out.println(b);
             }
         }
-        public void earlyBooks(){
+
+        public void earlyBooks() {
             this.sort();
-            for (Book b:books) {
+            for (Book b : books) {
                 if (Objects.equals(books.get(0).publishYear, b.publishYear)) System.out.println(b);
             }
         }
-        public void lastBooks(){
+
+        public void lastBooks() {
             this.sort();
-            for (Book b:books) {
-                if (Objects.equals(books.get(books.size()-1).publishYear, b.publishYear)) System.out.println(b);
+            for (Book b : books) {
+                if (Objects.equals(books.get(books.size() - 1).publishYear, b.publishYear)) System.out.println(b);
             }
         }
     }
@@ -499,7 +502,7 @@ public class Prac002 {
         public static void main(String[] args) {
             Bookshelf bs = new Bookshelf();
             for (int i = 0; i < 15; i++) {
-                bs.addBook("Kolya", "Title"+(i+1), String.valueOf((int)((Math.random()*40)+1980)));
+                bs.addBook("Kolya", "Title" + (i + 1), String.valueOf((int) ((Math.random() * 40) + 1980)));
             }
             bs.printBooks();
             bs.sort();
@@ -512,28 +515,65 @@ public class Prac002 {
 
         }
     }
+
     /**
      * Task 8
      */
-    static class arrayMoveItems{
+    static class arrayMoveItems {
         public static void main(String[] args) {
             String buff;
             String[] arr = new String[11];
             for (int i = 0; i < arr.length; i++) {
-                arr[i] = "item"+(i+1);
+                arr[i] = "item" + (i + 1);
             }
-            for (String s:arr) {
+            for (String s : arr) {
                 System.out.println(s);
             }
             System.out.println("------------------------------");
-            for (int i = 0; i < (int)(arr.length/2); i++) {
+            for (int i = 0; i < (int) (arr.length / 2); i++) {
                 buff = arr[i];
-                arr[i] = arr[arr.length-1-i];
-                arr[arr.length-1-i] = buff;
+                arr[i] = arr[arr.length - 1 - i];
+                arr[arr.length - 1 - i] = buff;
             }
-            for (String s:arr) {
+            for (String s : arr) {
                 System.out.println(s);
             }
+        }
+    }
+
+    /**
+     * Task 9
+     */
+    static class Poker {
+        public static void main(String[] args) {
+            String[] suits = new String[]{"diamond ", "club ", "heart ", "spade "};
+            String[] ranks = new String[]{"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+            ArrayList<String> cards = new ArrayList<>(52);
+            int n = 5;
+            for (String suit : suits) {
+                for (String rank : ranks) {
+                    cards.add(suit + rank);
+                }
+            }
+            int index;
+            for (int i = 0; i < n; i++) {
+                System.out.printf("Player %d:\n", i+1);
+                for (int j = 0; j < 5; j++) {
+                    index = (int) (Math.random() * (cards.size() - 1));
+                    System.out.println(cards.get(index));
+                    cards.remove(index);
+                }
+            }
+        }
+    }
+
+    /**
+     * Task 10
+     */
+    static class HowMany{
+        public static void main(String[] args) {
+            String s = sc.nextLine();
+            System.out.println(s.split(" ").length);
         }
     }
 }
