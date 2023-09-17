@@ -1,3 +1,5 @@
+package Prac002;
+
 import java.util.*;
 
 
